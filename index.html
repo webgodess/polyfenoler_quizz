@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polyfenoler Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicon-16x16.png"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- INTRODUCTION SCREEN -->
+    <div id="screen-introduction" class="screen active">
+      <div class="container">
+        <div class="introduction-card">
+          <div class="brand-badge">
+            <img
+              src="assets/images/logo.png"
+              alt="FONS Logo"
+              class="brand-logo"
+            />
+          </div>
+          <h1 class="introduction-title">
+            Hvor mange<br /><span class="highlight">polyfenoler</span><br />får
+            du i deg?
+          </h1>
+          <p class="introduction-text">
+            Ta vår korte test og finn ut om kostholdet ditt er rikt på
+            polyfenoler – naturlige antioksidanter som kan bidra til å beskytte
+            kroppen.
+          </p>
+          <div class="quiz-info">
+            <span class="info-item"
+              ><i class="fa-solid fa-clock"></i> 2 minutter</span
+            >
+            <span class="info-item"
+              ><i class="fa-solid fa-list-check"></i> 10 spørsmål</span
+            >
+          </div>
+          <button class="btn-fons btn-primary-fons w-100" onclick="startQuiz()">
+            Start testen →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div id="screen-quiz" class="screen">
+      <div class="container">
+        <div class="quiz-card">
+          <div class="quiz-header">
+            <div class="progress-wrapper">
+              <div class="progress-bar-display">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+              <span class="progress-label" id="progress-label">1 / 10</span>
+            </div>
+          </div>
+
+          <div id="question-area">
+            <div class="question-number" id="q-number">Spørsmål 1</div>
+            <h2 class="question-text" id="q-text">""</h2>
+            <div class="options-grid" id="options-container"></div>
+          </div>
+
+          <div class="quiz-nav">
+            <button
+              class="btn-fons btn-ghost-fons"
+              id="btn-prev"
+              onclick="prevQuestion()"
+              disabled
+            >
+              ← Tilbake
+            </button>
+            <button
+              class="btn-fons btn-primary-fons"
+              id="btn-next"
+              onclick="nextQuestion()"
+              disabled
+            >
+              Neste →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS SCREEN -->
+    <div id="screen-result" class="screen">
+      <div class="container">
+        <div class="result-card">
+          <div class="score-ring-wrap">
+            <svg class="score-ring" viewBox="0 0 120 120">
+              <circle class="ring-bg" cx="60" cy="60" r="50" />
+              <circle
+                class="ring-foreground"
+                id="ring-foreground"
+                cx="60"
+                cy="60"
+                r="50"
+              />
+            </svg>
+            <div class="score-inner">
+              <span class="score-num" id="score-display">0</span>
+              <span class="score-max">/ 30</span>
+            </div>
+          </div>
+
+          <h2 class="result-title" id="result-title">""</h2>
+          <p class="result-desc" id="result-desc"></p>
+
+          <div class="products-suggestions" id="products-suggestions">
+            <h3 class="suggestion-heading">Fons anbefaler for deg</h3>
+            <div class="products-grid" id="products-grid"></div>
+          </div>
+
+          <div class="email-section">
+            <h3 class="suggestion-heading">Ønsker du resultatet på e-post?</h3>
+            <p class="email-submission-text">
+              Vi sender deg en personlig oversikt med tips tilpasset ditt
+              resultat.
+            </p>
+            <div class="email-form-row" id="email-form-row">
+              <input
+                type="email"
+                class="input-fons"
+                id="email-input"
+                placeholder="din@epost.no"
+              />
+              <button
+                class="btn-fons btn-highlight-fons"
+                onclick="submitEmail()"
+              >
+                Send meg resultatet
+              </button>
+            </div>
+            <div id="email-confirm" class="email-confirm hidden">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#718a6f"
+                stroke-width="2.5"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Takk! Vi sender deg en e-post snart.
+            </div>
+          </div>
+
+          <button
+            class="btn-fons btn-ghost-fons mt-3 w-100"
+            onclick="restartQuiz()"
+          >
+            Ta testen på nytt
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
