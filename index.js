@@ -65,7 +65,7 @@ const QUESTIONS = [
   {
     text: "Hva er ditt typiske inntak av rødvin eller druebaserte produkter?",
     options: [
-      { text: "Ingen / drikker ikke alkohol", score: 1 },
+      { text: "Ingen / drikker ikke alkohol", score: 0 },
       { text: "Svært sjelden", score: 1 },
       { text: "Et glass rødvin noen ganger i uken", score: 2 },
       { text: "Daglig, ett glass", score: 3 },
